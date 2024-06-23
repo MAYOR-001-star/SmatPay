@@ -153,7 +153,7 @@ const App = () => {
           <div className='bg-[#F0F1F2] p-4 m-7 rounded-md max-w-[75%] mx-auto'>
             <h3 className='flex justify-center mb-2 font-semibold'>Pay bills on the go</h3>
             <div className='flex items-center justify-center gap-4'>
-              <img src='/images/tag.jpg' alt='reason-icon' className='w-[3.5rem] rounded-[50%]'/>
+              <img src='images/tag.jpg' alt='reason-icon' className='w-[3.5rem] rounded-[50%]'/>
               <p className='text-[0.65rem] lg:leading-[1.15rem]'>
                 Experience unparalleled convenience with SmatPay's 'Pay Bills on the Go' feature, allowing you to effortlessly manage and settle your bills anytime, anywhere. 
                 Enjoy the freedom to stay on top of your financial commitments without being tied to a desk or burdened by paperwork.
