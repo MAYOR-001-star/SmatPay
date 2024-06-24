@@ -405,7 +405,9 @@ const App = () => {
         </div>
         <p className='text-white px-7 lg:py-3'>&copy; 2024 SmatPay. All rights reserved.</p>
       </footer>
-      <FaArrowUp onClick={top} className='rounded-[50%] bg-white bg-red-700 top-icon text-xl text-[#7978ff]'/>
+      <div onClick={top} className='rounded-[50%] bg-white top-icon text-xl text-[#7978ff]'>
+        <FaArrowUp/>
+      </div>
     </div>
   )
 }
