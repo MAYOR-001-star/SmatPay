@@ -3,6 +3,45 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    scroll-behavior: smooth;
+}
+
 .header{
     @apply font-bold
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+@media (max-width: 1024px) {
+    .dropdown{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        max-height: 16rem;
+        opacity: 100%;
+        position: absolute;
+        top: 67px;
+        left: 0;
+        transition: all 0.5s ease-in;
+        background-color: rgba(0,0,0,0.5);
+        padding: 2rem 0;
+    }  
+    .dropdown.show{
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+.top-icon{
+    position: absolute;
+    padding: 1rem;
+    z-index: 3;
 }

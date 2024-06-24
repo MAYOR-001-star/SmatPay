@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CountUp from 'react-countup';
 import { data } from './data';
-import { FaArrowRight, FaBars, FaFacebook, FaInstagram, FaLinkedin, FaMinus, FaPlus, FaTimes, FaTwitter } from 'react-icons/fa';
+import Aos from 'aos';
+import "aos/dist/aos.css";
+import { FaArrowRight, FaArrowUp, FaBars, FaFacebook, FaInstagram, FaLinkedin, FaMinus, FaPlus, FaTimes, FaTwitter } from 'react-icons/fa';
 
 const App = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -15,6 +17,13 @@ const App = () => {
     setSelected(i)
   }
 
+  useEffect(()=>{
+    Aos.init({duration: 2000})
+  },[])
+
+  const top = () =>{
+    window.scrollTo(0,0)
+  }
 
   const bgToggle = (index) => {
     const newImgAppear = imgAppear.map((appear, i) => i === index ? !appear : false);
@@ -40,10 +49,11 @@ const App = () => {
   const handleLinkClick = () => {
     setDropDown(false);
   };
+  
 
   return (
     <div>
-      <div className='max-h-[10vh] mx-auto'>
+      <div className='max-h-[10vh] mx-auto' id='top'>
         <div className='bg-[#7978ff]'>
           <img src='/images/bg-smatpay.png' alt='blue-template' className='opacity-[10%] lg:opacity-[4%] mx-auto h-[50rem] md:h-[36rem] w-full'/>
           <nav className='flex justify-between lg:justify-around items-center absolute top-0 w-full my-10 px-[2.5rem] lg:px-0 z-[2]'>
@@ -60,10 +70,7 @@ const App = () => {
             >
               {dropDown ? <FaTimes /> : <FaBars />}
             </button>
-            <ul
-              className={`${dropDown ? 'flex flex-col absolute top-[67px] pt-4 pb-4 left-0 w-full bg-[rgba(0,0,0,0.5)] mx-auto' : 'hidden'} lg:flex justify-between items-center gap-[25px]`}
-              ref={menuRef}
-            >
+            <ul className={`${dropDown ? 'dropdown' : 'dropdown show'}`}>
               <li>
                 <a href='#home' className='text-white capitalize font-familyy hover:text-[#38c5ca]' onClick={handleLinkClick}>
                   home
@@ -124,22 +131,22 @@ const App = () => {
         <img src='/images/phone-view.png' alt='app-phone-view' className='mx-auto md:mx-0 w-[20rem] md:w-[25rem]'/>
       </div>
       <div className='mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center w-full'>
-        <p className='text-[#7978ff] font-familyy font-bold text-base mx-auto'>
+        <p className='text-[#7978ff] font-familyy font-bold text-base mx-auto' data-aos='fade-down'>
           <span className='text-black font-normal'>Trusted by more than </span> <CountUp start={0} end={1000}/>+ <span className='text-black font-normal'> active<br/> users across the country</span>
         </p>
-        <div className='flex justify-center gap-4 items-center w-full mt-10 md:mt-0'>
+        <div className='flex justify-center gap-4 items-center w-full mt-10 md:mt-0' data-aos='fade-down' data-aos-delay='400'>
           <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
             <CountUp start={0} end={1} delay={2}/>k
           </p>
           <p className='text-black capitalize'>rating<br/>users</p>
         </div>
-        <div className='flex justify-center gap-4 items-center w-full mt-10 lg:mt-0'>
+        <div className='flex justify-center gap-4 items-center w-full mt-10 lg:mt-0' data-aos='fade-down' data-aos-delay='600'>
           <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
             <CountUp start={0} end={20}/>k
           </p>
           <p className='text-black capitalize'>successful<br/>transactions</p>
         </div>
-        <div className='flex justify-center gap-4 items-center w-full my-10'>
+        <div className='flex justify-center gap-4 items-center w-full my-10' data-aos='fade-down' data-aos-delay='800'>
           <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
             <CountUp start={0} end={90}/>%
           </p>
@@ -302,7 +309,7 @@ const App = () => {
           {data.map((content, index) => {
             const { question, answer } = content;
             return (
-              <div key={index} className={`${selected === index ? 'bg-[#7978ff]' : 'bg-white'} mx-auto max-w-[22rem] md:max-w-[35rem] lg:max-w-[45rem] rounded-md p-3`}>
+              <div key={index} className={`${selected === index ? 'bg-[#7978ff] ' : 'bg-white'} mx-auto max-w-[22rem] md:max-w-[35rem] lg:max-w-[45rem] rounded-md p-3 transition-all duration-500 ease-in`}>
                 <div onClick={() => selection(index)} className={`flex items-center justify-between gap-4 text-xl border-2 outline-2 outline-offset-2 border-[#7978ff] rounded-md p-5 max-w[18rem] mx-auto`}>
                   <h1 className={`${selected === index ? 'text-white header' : 'text-black header'}`}>{question}</h1>
                   <span className={`${selected === index ? 'text-white' : 'text-black'}`}>
@@ -366,27 +373,27 @@ const App = () => {
           </div>
           <div className='flex flex-col justify-center lg:items-start items-center gap-2'>
             <h1 className='text-xl font-semibold text-white mb-3'>Services</h1>
-            <a href='#' className='text-white'>Airtime Top-up</a>
-            <a href='#' className='text-white'>Data Bundles</a>
-            <a href='#' className='text-white'>Utility Bill Payments</a>
-            <a href='#' className='text-white'>Education Bill Payment</a>
-            <a href='#' className='text-white'>TV subscriptions</a>
-            <a href='#' className='text-white'>User Gifting</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Airtime Top-up</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Data Bundles</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Utility Bill Payments</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Education Bill Payment</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>TV subscriptions</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>User Gifting</a>
           </div>
           <div className='flex flex-col justify-center lg:items-start items-center gap-2'>
             <h1 className='text-xl font-semibold text-white'>Company</h1>
-            <a href='#' className='text-white'>About Us</a>
-            <a href='#' className='text-white'>FAQs</a>
-            <a href='#' className='text-white'>Contact Info</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>About Us</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>FAQs</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Contact Info</a>
           </div>
           <div className='flex flex-col justify-center lg:items-start items-center gap-2'>
             <h1 className='text-xl font-semibold text-white'>Legal</h1>
-            <a href='#' className='text-white'>Privacy Policy</a>
-            <a href='#' className='text-white'>Terms & Conditions</a>
-            <a href='#' className='text-white'>Security</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Privacy Policy</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Terms & Conditions</a>
+            <a href='#' className='text-white hover:text-[#38c5ca]'>Security</a>
           </div>
-          <div className='flex flex-col justify-center lg:items-start items-center gap-2'>
-            <div className='flex justify-center md:justify-start items-center mx-auto gap-5'>
+          <div className='flex flex-col justify-center lg:items-start items-center gap-4'>
+            <div className='flex justify-center md:justify-start items-center gap-5'>
               <a href='#' className='text-white'><FaFacebook className='text-[#7978ff]'/></a>
               <a href='#' className='text-white'><FaTwitter className='text-[#7978ff]'/></a>
               <a href='#' className='text-white'><FaInstagram className='text-[#7978ff]'/></a>
@@ -396,9 +403,9 @@ const App = () => {
             <a href='#' className='text-white'>+234 123 456 7890</a>
           </div>
         </div>
-        <p className='text-white px-7 lg:py-3'>&copy; 2024 SmatPay. All rights reserved.</p>  
+        <p className='text-white px-7 lg:py-3'>&copy; 2024 SmatPay. All rights reserved.</p>
       </footer>
-      
+      <FaArrowUp onClick={top} className='rounded-[50%] bg-white bg-red-700 top-icon text-xl text-[#7978ff]'/>
     </div>
   )
 }
