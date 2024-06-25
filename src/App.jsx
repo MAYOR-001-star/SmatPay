@@ -4,11 +4,13 @@ import { data } from './data';
 import Aos from 'aos';
 import "aos/dist/aos.css";
 import { FaArrowRight, FaArrowUp, FaBars, FaFacebook, FaInstagram, FaLinkedin, FaMinus, FaPlus, FaTimes, FaTwitter } from 'react-icons/fa';
+import ScrollTrigger from 'react-scroll-trigger';
 
 const App = () => {
   const [dropDown, setDropDown] = useState(false);
   const [imgAppear, setImgAppear] = useState([true, false, false, false]);
   const [selected, setSelected] = useState(null)
+  const [counterState, setCounterState] = useState(false)
 
   const selection = (i) =>{
     if(selected === i){
@@ -130,29 +132,32 @@ const App = () => {
         </div>
         <img src='/images/phone-view.png' alt='app-phone-view' className='mx-auto md:mx-0 w-[20rem] md:w-[25rem]'/>
       </div>
-      <div className='mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center w-full'>
-        <p className='text-[#7978ff] font-familyy font-bold text-base mx-auto' data-aos='fade-down'>
-          <span className='text-black font-normal'>Trusted by more than </span> <CountUp start={0} end={1000}/>+ <span className='text-black font-normal'> active<br/> users across the country</span>
-        </p>
-        <div className='flex justify-center gap-4 items-center w-full mt-10 md:mt-0' data-aos='fade-down' data-aos-delay='400'>
-          <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
-            <CountUp start={0} end={1} delay={2}/>k
+      <ScrollTrigger onEnter={() => setCounterState(true)} onExit={() => setCounterState(false)}>
+        <div className='mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center w-full'>
+          <p className='text-[#7978ff] font-familyy font-bold text-base mx-auto' data-aos='fade-down'>
+            <span className='text-black font-normal'>Trusted by more than </span> { counterState && <CountUp start={0} end={1000}/>}+ <span className='text-black font-normal'> active<br/> users across the country</span>
           </p>
-          <p className='text-black capitalize'>rating<br/>users</p>
+          <div className='flex justify-center gap-4 items-center w-full mt-10 md:mt-0' data-aos='fade-down' data-aos-delay='200'>
+            <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
+              { counterState && <CountUp start={0} end={1} delay={2}/>}k
+            </p>
+            <p className='text-black capitalize'>rating<br/>users</p>
+          </div>
+          <div className='flex justify-center gap-4 items-center w-full mt-10 lg:mt-0' data-aos='fade-down' data-aos-delay='300'>
+            <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
+              { counterState && <CountUp start={0} end={20} delay={2}/>}k
+            </p>
+            <p className='text-black capitalize'>successful<br/>transactions</p>
+          </div>
+          <div className='flex justify-center gap-4 items-center w-full my-10' data-aos='fade-down' data-aos-delay='400'>
+            <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
+              { counterState && <CountUp start={0} end={90} delay={2}/>}%
+            </p>
+            <p className='text-black capitalize'>satisfied and<br/>happy clients</p>
+          </div>
         </div>
-        <div className='flex justify-center gap-4 items-center w-full mt-10 lg:mt-0' data-aos='fade-down' data-aos-delay='600'>
-          <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
-            <CountUp start={0} end={20}/>k
-          </p>
-          <p className='text-black capitalize'>successful<br/>transactions</p>
-        </div>
-        <div className='flex justify-center gap-4 items-center w-full my-10' data-aos='fade-down' data-aos-delay='800'>
-          <p className='text-[#7978ff] font-familyy font-bold text-[2rem]'>
-            <CountUp start={0} end={90}/>%
-          </p>
-          <p className='text-black capitalize'>satisfied and<br/>happy clients</p>
-        </div>
-      </div>
+      </ScrollTrigger>
+      
       <div className='mx-auto w-full flex flex-col items-center justify-center mt-[2rem] md:mt-[5rem] mb-24 font-familyy'>
         <h2 className='text-2xl'>Why Choose <span className='text-[#7978ff] font-bold'>SmatPay</span></h2>
         <p className='mt-3 text-center text-[0.85rem] mx-4'>Your top payment platform with reliable user-service experience.</p>
