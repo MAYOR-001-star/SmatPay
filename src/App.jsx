@@ -133,7 +133,7 @@ const App = () => {
         <img src='/images/phone-view.png' alt='app-phone-view' className='mx-auto md:mx-0 w-[20rem] md:w-[25rem]'/>
       </div>
       <ScrollTrigger onEnter={() => setCounterState(true)} onExit={() => setCounterState(false)}>
-        <div className='mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center w-full'>
+        <div className='mt-[10rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center w-full'>
           <p className='text-[#7978ff] font-familyy font-bold text-base mx-auto' data-aos='fade-down'>
             <span className='text-black font-normal'>Trusted by more than </span> { counterState && <CountUp start={0} end={1000}/>}+ <span className='text-black font-normal'> active<br/> users across the country</span>
           </p>
