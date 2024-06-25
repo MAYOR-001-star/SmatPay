@@ -267,8 +267,8 @@ const App = () => {
               </div>
             </div>
           </div>
-          <aside className='bg-[#E6ECFD] m-5 p-3 mt-10'>
-            <img src='images/app-signup.png' alt='iphone-icon' className='lg:h-[15rem]'/>
+          <aside className='bg-[#E6ECFD] m-5 p-3 mt-10 flex justify-center items-center'>
+            <img src='/images/gif.gif' alt='iphone-icon' className='lg:h-[16rem]'/>
           </aside>
         </div>
         <a href='#' className='bg-[#7978ff] flex justify-around items-center gap-[10px] p-3 rounded-md max-w-[12rem] mx-auto my-20'>
